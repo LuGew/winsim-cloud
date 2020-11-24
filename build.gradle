@@ -1,8 +1,13 @@
+ext {
+    guavaVersion = "30.0-jre"
+    spockVersion = "2.0-M4-groovy-3.0"
+}
 allprojects {
-
+    apply plugin: 'java'
     group = 'com.lugew.winsim-cloud'
     version = '0.0.1-SNAPSHOT'
-//    sourceCompatibility = '1.8'
+    sourceCompatibility = '1.8'
+    targetCompatibility = '1.8'
 
     repositories {
         mavenLocal()
@@ -12,12 +17,14 @@ allprojects {
         }
         mavenCentral()
     }
+
 }
 
 subprojects {
-    apply plugin: 'java'
-    sourceCompatibility = '1.8'
-    targetCompatibility = '1.8'
+    dependencies {
+        implementation "com.google.guava:guava:${guavaVersion}"
+        testImplementation "org.spockframework:spock-core:${spockVersion}"
+    }
 }
 
 
