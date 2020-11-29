@@ -23,10 +23,10 @@ allprojects {
 
 subprojects {
     dependencies {
+        implementation "com.google.guava:guava:${guavaVersion}"
 
         testImplementation "org.codehaus.groovy:groovy-all:${groovyVersion}"
         testImplementation "org.codehaus.groovy:groovy:${groovyVersion}"
-        implementation "com.google.guava:guava:${guavaVersion}"
         testImplementation "org.spockframework:spock-core:${spockVersion}"
     }
 }

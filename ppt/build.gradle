@@ -3,10 +3,19 @@ plugins {
     id 'io.spring.dependency-management' version '1.0.10.RELEASE'
     id 'groovy'
 }
+ext {
+    winsimVersion = "1.+"
+    poiVersion = "4.1.2"
+}
 
 dependencies {
+    implementation "com.lugew.winsim:winsim-starter:${winsimVersion}"
     implementation 'org.springframework.boot:spring-boot-starter'
     implementation 'org.springframework.boot:spring-boot-starter-web'
+    implementation "org.apache.poi:poi-ooxml:${poiVersion}"
+
+    testCompile "org.spockframework:spock-spring:${parent.spockVersion}"
+
     testImplementation('org.springframework.boot:spring-boot-starter-test') {
         exclude group: 'org.junit.vintage', module: 'junit-vintage-engine'
     }
