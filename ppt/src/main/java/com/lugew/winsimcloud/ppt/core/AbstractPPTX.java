@@ -3,12 +3,17 @@ package com.lugew.winsimcloud.ppt.core;
 import com.lugew.winsimcloud.ppt.interfaces.PPTX;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.poi.sl.usermodel.Placeholder;
-import org.apache.poi.xslf.usermodel.*;
+import org.apache.poi.xslf.usermodel.XMLSlideShow;
+import org.apache.poi.xslf.usermodel.XSLFSlide;
+import org.apache.poi.xslf.usermodel.XSLFTextShape;
 
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 @Slf4j
 public class AbstractPPTX implements PPTX {
@@ -30,36 +35,6 @@ public class AbstractPPTX implements PPTX {
 
     @Override
     public XMLSlideShow getSlideShow() {
-        List<XSLFSlideMaster> xslfSlideMasters = xmlSlideShow.getSlideMasters();
-        for (XSLFSlideMaster xslfSlideMaster : xslfSlideMasters) {
-            /*XSLFTextShape[] placeholders = xslfSlideMaster.getPlaceholders();
-
-            for (XSLFTextShape placeholder : placeholders) {
-
-                log.debug(placeholder.getText());
-                log.debug(placeholder.toString());
-                log.debug(placeholder.getShapeName());
-                log.debug(placeholder.getTextType().toString());
-                if (Placeholder.PICTURE.equals(placeholder.getTextType())) {
-                }
-            }*/
-            XSLFSlideLayout[] xslfSlideLayouts = xslfSlideMaster.getSlideLayouts();
-
-            for (XSLFSlideLayout xslfSlideLayout : xslfSlideLayouts) {
-                XSLFTextShape[] xplaceholders = xslfSlideLayout.getPlaceholders();
-
-                for (XSLFTextShape placeholder : xplaceholders) {
-
-                    log.debug(placeholder.getText());
-                    log.debug(placeholder.toString());
-                    log.debug(placeholder.getShapeName());
-                    log.debug(placeholder.getTextType().toString());
-                    if (Placeholder.PICTURE.equals(placeholder.getTextType())) {
-                    }
-                }
-                log.debug(xslfSlideLayout.getName());
-            }
-        }
         return xmlSlideShow;
     }
 
@@ -75,18 +50,32 @@ public class AbstractPPTX implements PPTX {
 
     @Override
     public int getPicturePlaceholderSize(int slideIndex) {
-        XSLFSlide xslfSlide = getSlide(slideIndex);
-        XSLFTextShape[] placeholders = xslfSlide.getPlaceholders();
+        XSLFSlide slide = getSlide(slideIndex);
+        XSLFTextShape[] placeholders = slide.getPlaceholders();
         int size = 0;
         for (XSLFTextShape placeholder : placeholders) {
-            log.debug(placeholder.getText());
-            log.debug(placeholder.toString());
-            log.debug(placeholder.getShapeName());
-            log.debug(placeholder.getTextType().toString());
             if (Placeholder.PICTURE.equals(placeholder.getTextType())) {
                 size++;
             }
         }
         return size;
+    }
+
+    @Override
+    public Map<String, List<XSLFTextShape>> getText() {
+        List<XSLFSlide> slides = getSlides();
+        Map<String, List<XSLFTextShape>> result = new HashMap<>();
+
+        for (XSLFSlide slide : slides) {
+            XSLFTextShape[] placeholders = slide.getSlideLayout().getPlaceholders();
+            for (XSLFTextShape placeholder : placeholders) {
+                if (Placeholder.BODY.equals(placeholder.getTextType())) {
+                    String text = placeholder.getText();
+                    result.putIfAbsent(text, new ArrayList<>());
+                    result.get(text).add(placeholder);
+                }
+            }
+        }
+        return result;
     }
 }

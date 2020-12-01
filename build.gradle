@@ -2,6 +2,7 @@ ext {
     guavaVersion = "30.0-jre"
     spockVersion = "2.0-M4-groovy-3.0"
     groovyVersion = "3.0.6"
+    fastJSONVersion = "1.2.75"
 }
 allprojects {
     apply plugin: 'java'
@@ -24,6 +25,7 @@ allprojects {
 subprojects {
     dependencies {
         implementation "com.google.guava:guava:${guavaVersion}"
+        implementation "com.alibaba:fastjson:${fastJSONVersion}"
 
         testImplementation "org.codehaus.groovy:groovy-all:${groovyVersion}"
         testImplementation "org.codehaus.groovy:groovy:${groovyVersion}"

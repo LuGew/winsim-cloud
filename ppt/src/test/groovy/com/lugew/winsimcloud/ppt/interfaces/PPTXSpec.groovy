@@ -1,17 +1,18 @@
 package com.lugew.winsimcloud.ppt.interfaces
 
+
 import com.lugew.winsimcloud.ppt.core.PPTXHolder
 import com.lugew.winsimcloud.ppt.domain.Patient
+import groovy.util.logging.Slf4j
+import org.apache.poi.xslf.usermodel.XSLFTextShape
 import org.springframework.util.ResourceUtils
-import spock.lang.Shared
-import spock.lang.Specification
-import spock.lang.Subject
-import spock.lang.Title
+import spock.lang.*
 
 import java.time.LocalDateTime
 
 @Title("pptx测试")
 @Subject(PPTXHolder.class)
+@Slf4j
 class PPTXSpec extends Specification {
     @Shared
     PPTX pptx
@@ -41,33 +42,51 @@ class PPTXSpec extends Specification {
         expect: "每页图片模板数量正确"
         pptx.getPicturePlaceholderSize(index) == size
         where: "详情"
-        index | size
-        0     | 0
-        1     | 3
-        2     | 5
-        3     | 1
-        4     | 1
-        5     | 8
-        6     | 8
-        7     | 3
-        8     | 5
-        9     | 5
-        10    | 5
-        11    | 5
-        12    | 8
-        13    | 5
-        14    | 3
-        15    | 10
-        16    | 6
-        17    | 6
-        18    | 2
-        19    | 2
-        20    | 1
+        index || size
+        0     || 0
+        1     || 3
+        2     || 5
+        3     || 1
+        4     || 1
+        5     || 8
+        6     || 8
+        7     || 3
+        8     || 5
+        9     || 5
+        10    || 5
+        11    || 5
+        12    || 8
+        13    || 5
+        14    || 3
+        15    || 10
+        16    || 6
+        17    || 6
+        18    || 2
+        19    || 2
+        20    || 1
 
     }
 
+    def "文本和ppt一致"() {
+        given: "获取文本"
+        Map<String, List<XSLFTextShape>> result = pptx.getText()
+
+        expect: "文本一致"
+        log.debug("result:{}", result.toString())
+
+        with(result) {
+            get()
+        }
+        where: "例子"
+        name || size
+        "name" || size
+
+
+    }
+
+    @Ignore
     def "患者信息填入ppt"() {
-        given: "初始化患者"
+        given: "患者、字段映射"
         Patient patient = initializePatient()
         when: "填入ppt"
         pptx.replaceText(patient)
@@ -77,7 +96,7 @@ class PPTXSpec extends Specification {
 
     }
 
-    def  initializePatient() {
+    def initializePatient() {
         Patient patient = new Patient()
         LocalDateTime now = LocalDateTime.now()
         patient.with {
