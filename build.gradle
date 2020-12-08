@@ -17,6 +17,7 @@ allprojects {
             url 'https://maven.aliyun.com/repository/public/'
         }
         mavenCentral()
+        google()
     }
 
 }
