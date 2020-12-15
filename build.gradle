@@ -19,7 +19,9 @@ allprojects {
         mavenCentral()
         google()
     }
-
+    test {
+        useJUnitPlatform()
+    }
 }
 
 subprojects {
