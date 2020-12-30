@@ -1,4 +1,6 @@
-rootProject.name = 'starter'
+rootProject.name = 'winsim-cloud'
 include 'ppt'
 include 'oauth2'
 include 'eureka-server'
+include 'ribbon'
+include 'gateway'

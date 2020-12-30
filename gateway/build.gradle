@@ -1,0 +1,11 @@
+dependencies {
+    implementation(
+//            "org.springdoc:springdoc-openapi-ui:${openapiVersion}",
+            "org.springframework.boot:spring-boot-starter",
+            "org.springframework.cloud:spring-cloud-starter-netflix-zuul",
+            "org.springframework.cloud:spring-cloud-starter-netflix-eureka-client",
+    )
+    testImplementation('org.springframework.boot:spring-boot-starter-test') {
+        exclude group: 'org.junit.vintage', module: 'junit-vintage-engine'
+    }
+}

@@ -1,12 +1,16 @@
+server:
+  port: 18001
+
+ribbon:
+  eureka:
+    enabled: true
+
 eureka:
   instance:
     hostname: localhost
   client:
-    enabled: false
+    register-with-eureka: false
     fetch-registry: false
-    service-url:
-      defaultZone: http://${eureka.instance.hostname}:${server.port}/eureka/
+#    service-url:
+#      defaultZone: http://${eureka.instance.hostname}:${server.port}/eureka/
 #    http://${eureka.instance.hostname}:${server.port}/eureka/
-
-server:
-  port: 8022

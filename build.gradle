@@ -1,8 +1,18 @@
+plugins {
+    id 'org.springframework.boot' version '2.3.6.RELEASE' apply false
+    id 'io.spring.dependency-management' version '1.0.10.RELEASE' apply false
+}
 ext {
     guavaVersion = "30.0-jre"
     spockVersion = "2.0-M4-groovy-3.0"
     groovyVersion = "3.0.6"
+    springCloudVersion = "Hoxton.SR9"
+    eurekaVersion = "2.2.6.RELEASE"
+    lombokVersion = "1.18.16"
+    openapiVersion = "1.5.2"
 }
+
+
 allprojects {
     apply plugin: 'java'
     group = 'com.lugew.winsim-cloud'
@@ -25,12 +35,30 @@ allprojects {
 }
 
 subprojects {
-    dependencies {
+    apply plugin: 'groovy'
+    apply plugin: 'org.springframework.boot'
+    apply plugin: 'io.spring.dependency-management'
 
-        testImplementation "org.codehaus.groovy:groovy-all:${groovyVersion}"
-        testImplementation "org.codehaus.groovy:groovy:${groovyVersion}"
-        implementation "com.google.guava:guava:${guavaVersion}"
-        testImplementation "org.spockframework:spock-core:${spockVersion}"
+    dependencies {
+        implementation(
+                "com.google.guava:guava:${guavaVersion}"
+        )
+        compileOnly(
+                "org.projectlombok:lombok:${lombokVersion}"
+        )
+        annotationProcessor(
+                "org.projectlombok:lombok:${lombokVersion}"
+        )
+        testImplementation(
+                "org.codehaus.groovy:groovy-all:${groovyVersion}",
+                "org.codehaus.groovy:groovy:${groovyVersion}",
+                "org.spockframework:spock-core:${spockVersion}",
+        )
+    }
+    dependencyManagement {
+        imports {
+            mavenBom "org.springframework.cloud:spring-cloud-dependencies:${springCloudVersion}"
+        }
     }
 }
 
