@@ -1,10 +1,8 @@
 server:
   port: 18001
-
 ribbon:
   eureka:
     enabled: true
-
 eureka:
   instance:
     hostname: localhost

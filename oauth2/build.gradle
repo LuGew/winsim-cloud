@@ -1,12 +1,17 @@
+ext {
+    mysqlVersion = "8.0.22"
+}
 
 dependencies {
     implementation(
-            "org.springframework.cloud:spring-cloud-starter-netflix-eureka-client",
-//            "org.springframework.boot:spring-security-oauth2",
-//            "org.springframework.boot:spring-boot-starter-security",
             "org.springframework.boot:spring-boot-starter-web",
-            "org.springframework.boot:spring-boot-starter-actuator",
-            "org.springframework.boot:spring-boot-configuration-processor",
+            "org.springframework.boot:spring-boot-starter-data-jpa",
+            "org.springframework.boot:spring-boot-starter-data-redis",
+            "org.springframework.cloud:spring-cloud-starter-oauth2",
+            project(":core")
+    )
+    runtimeOnly(
+            "mysql:mysql-connector-java:${mysqlVersion}"
     )
     testImplementation 'org.springframework.boot:spring-boot-starter-test'
 }
