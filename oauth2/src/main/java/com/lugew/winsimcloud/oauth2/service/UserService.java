@@ -5,9 +5,11 @@ import com.lugew.winsimcloud.oauth2.repository.UserRepository;
 import com.lugew.winsmcloud.core.exception.Exception;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 /**
@@ -19,10 +21,11 @@ import org.springframework.stereotype.Service;
 @RequiredArgsConstructor
 public class UserService implements UserDetailsService {
     private final UserRepository userRepository;
+    private final PasswordEncoder passwordEncoder;
 
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
-        log.debug("username:{}", username);
+        log.info("username:{}", username);
         User user = userRepository.findByName(username)
                 .orElseThrow(() -> new Exception("user.not.found"));
         return generateUserDetails(user);
@@ -31,7 +34,8 @@ public class UserService implements UserDetailsService {
     public UserDetails generateUserDetails(User user) {
         return org.springframework.security.core.userdetails.User.builder()
                 .username(user.getName())
-                .password(user.getPassword())
+                .password(passwordEncoder.encode(user.getPassword()))
+                .authorities(new SimpleGrantedAuthority("ROLE_ADMIN"))
                 .build();
     }
 

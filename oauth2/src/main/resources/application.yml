@@ -1,5 +1,5 @@
 server:
-  port: 18002
+  port: 18000
 spring:
   application:
     name: oauth2
@@ -17,7 +17,9 @@ spring:
     host: localhost
     database: 0
 
-
+logging:
+  level:
+    org.springframework: DEBUG
 
 #  cloud:
 #    service-registry:

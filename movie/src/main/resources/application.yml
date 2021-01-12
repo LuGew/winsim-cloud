@@ -1,0 +1,24 @@
+spring:
+  application:
+    name: movie
+  redis:
+    database: 2
+    host: localhost
+
+server:
+  port: 18006
+
+security:
+  oauth2:
+#    client:
+#      client-id: user-client1
+#      client-secret: user-secret-88881
+#      user-authorization-uri: ${auth-server.prefix}/authorize
+#      access-token-uri: ${auth-server.prefix}/token
+    resource:
+      id: user
+      jwt:
+        key-value: dev
+
+auth-server:
+  prefix: http://localhost:18000/oauth
