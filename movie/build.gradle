@@ -1,0 +1,10 @@
+dependencies {
+    implementation(
+            "org.springframework.boot:spring-boot-starter-web",
+            "org.springframework.boot:spring-boot-starter-data-redis",
+            "org.springframework.cloud:spring-cloud-starter-oauth2",
+            project(":core")
+    )
+    testImplementation 'org.springframework.boot:spring-boot-starter-test'
+
+}

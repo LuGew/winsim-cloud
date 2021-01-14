@@ -2,7 +2,10 @@ package com.lugew.winsimcloud.oauth2.entity;
 
 import lombok.Data;
 
-import javax.persistence.*;
+import javax.persistence.Basic;
+import javax.persistence.Entity;
+import javax.persistence.Id;
+import javax.persistence.Lob;
 
 import static javax.persistence.FetchType.LAZY;
 
@@ -23,7 +26,7 @@ public class OauthAccessToken {
     private byte[] token;
 
 
-    private String userName;
+    private String username;
 
     private String clientId;
     @Lob

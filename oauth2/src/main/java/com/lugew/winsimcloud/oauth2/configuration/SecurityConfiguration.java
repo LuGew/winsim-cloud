@@ -31,7 +31,7 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
                 .authorizeRequests()
                 .antMatchers("/oauth/**").permitAll()
                 .and()
-                .httpBasic();
+                .formLogin();
     }
 
     @Bean
