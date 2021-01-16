@@ -2,6 +2,8 @@ package com.lugew.winsmcloud.core.service;
 
 import com.lugew.winsmcloud.core.entity.Entity;
 
+import java.util.List;
+
 
 /**
  * 业务逻辑层接口
@@ -9,6 +11,26 @@ import com.lugew.winsmcloud.core.entity.Entity;
  *
  * @author LuGew
  */
-public interface Service<T extends Entity<?, ?>> {
+public interface Service<T extends Entity<ID>, ID> {
+
+    int insert(T entity);
+
+    int insert(List<T> entities);
+
+    int update(T entity);
+
+    int delete(ID key);
+
+    long count();
+
+    T get(ID key);
+
+    T get(T entity);
+
+    boolean exists(ID key);
+
+    List<T> getList(T entity);
+
+    Object getPagingList(T entity, int pageIndex, int pageSize);
 
 }

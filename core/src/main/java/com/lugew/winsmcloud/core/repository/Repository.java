@@ -8,7 +8,7 @@ import com.lugew.winsmcloud.core.entity.Entity;
  * @author 夏露桂
  * @since 2021/1/14 10:03
  */
-public interface Repository<T extends Entity<?, ?>> {
+public interface Repository<T extends Entity<?>> {
 
 
 }

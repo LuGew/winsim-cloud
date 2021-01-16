@@ -8,9 +8,8 @@ import java.time.LocalDateTime;
  * 实体接口
  *
  * @param <ID> 主键泛型
- * @param <UID> 用户主键泛型
  */
-public interface Entity<ID, UID> extends Serializable {
+public interface Entity<ID> extends Serializable {
     /**
      * 获取主键
      *
@@ -29,17 +28,17 @@ public interface Entity<ID, UID> extends Serializable {
 
     void setDeleted(Boolean deleted);
 
-    UID getCreator();
+    Long getCreator();
 
-    void setCreator(UID creator);
+    void setCreator(Long creator);
 
     LocalDateTime getCreateDateTime();
 
     void setCreateDateTime(LocalDateTime createDateTime);
 
-    UID getModifier();
+    Long getModifier();
 
-    void setModifier(UID modifier);
+    void setModifier(Long modifier);
 
     LocalDateTime getModifyDateTime();
 

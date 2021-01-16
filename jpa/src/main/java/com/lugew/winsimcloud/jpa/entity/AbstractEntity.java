@@ -1,4 +1,4 @@
-package com.lugew.winsimcloud.oauth2.entity;
+package com.lugew.winsimcloud.jpa.entity;
 
 import com.lugew.winsmcloud.core.entity.Entity;
 
@@ -9,10 +9,10 @@ import java.time.LocalDateTime;
 
 
 @MappedSuperclass
-public abstract class AbstractEntity<I extends Serializable, U extends Serializable> implements Entity<I, U> {
+public abstract class AbstractEntity<I extends Serializable> implements Entity<I> {
     protected I id;
-    protected U creator;
-    protected U modifier;
+    protected Long creator;
+    protected Long modifier;
     protected LocalDateTime createDateTime;
     protected LocalDateTime modifyDateTime;
     protected Boolean deleted;
@@ -29,22 +29,22 @@ public abstract class AbstractEntity<I extends Serializable, U extends Serializa
     }
 
     @Override
-    public U getCreator() {
+    public Long getCreator() {
         return creator;
     }
 
     @Override
-    public void setCreator(U creator) {
+    public void setCreator(Long creator) {
         this.creator = creator;
     }
 
     @Override
-    public U getModifier() {
+    public Long getModifier() {
         return modifier;
     }
 
     @Override
-    public void setModifier(U modifier) {
+    public void setModifier(Long modifier) {
         this.modifier = modifier;
     }
 

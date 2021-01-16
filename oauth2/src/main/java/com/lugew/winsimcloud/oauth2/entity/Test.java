@@ -1,5 +1,6 @@
 package com.lugew.winsimcloud.oauth2.entity;
 
+import com.lugew.winsimcloud.jpa.entity.BasicEntity;
 import lombok.Getter;
 import lombok.Setter;
 

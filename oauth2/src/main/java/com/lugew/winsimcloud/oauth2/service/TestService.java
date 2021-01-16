@@ -9,11 +9,10 @@ import org.springframework.stereotype.Service;
  * @author 夏露桂
  * @since 2021/1/14 10:13
  */
-/*
 @Service
 @RequiredArgsConstructor
-public class TestService extends AbstractService<Test, TestRepository> {
+public class TestService extends JpaService<Test, TestRepository, Long> {
 
 
 }
-*/
+

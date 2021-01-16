@@ -1,5 +1,6 @@
 package com.lugew.winsimcloud.oauth2.entity;
 
+import com.lugew.winsimcloud.jpa.entity.BasicEntity;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -15,7 +16,7 @@ import javax.persistence.Id;
 @Entity
 @Getter
 @Setter
-public class User extends AbstractEntity<Long, Long> {
+public class User extends BasicEntity {
 
     private String name;
 
