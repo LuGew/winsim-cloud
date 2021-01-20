@@ -13,15 +13,15 @@ import java.util.List;
  */
 public interface Service<T extends Entity<ID>, ID> {
 
-    int insert(T entity);
+    boolean insert(T entity);
 
-    int insert(List<T> entities);
+    boolean insert(List<T> entities);
 
-    int update(T entity);
+    boolean update(T entity);
 
-    int delete(ID key);
+    boolean delete(ID key);
 
-    long count();
+    int count();
 
     T get(ID key);
 

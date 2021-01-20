@@ -1,7 +1,6 @@
 plugins {
     //lombok插件 https://plugins.gradle.org/plugin/io.freefair.lombok
     id "io.freefair.lombok" version "5.3.0"
-
     id 'org.springframework.boot' version '2.3.6.RELEASE' apply false
     id 'io.spring.dependency-management' version '1.0.10.RELEASE' apply false
 }
@@ -12,6 +11,9 @@ ext {
     springCloudVersion = "Hoxton.SR9"
     lombokVersion = "1.18.16"
     openapiVersion = "1.5.2"
+    aspectjVersion = "1.9.6"
+    byteBuddyVersion = "1.10.19"
+    objenesisVersion = "3.1"
 }
 
 
@@ -56,6 +58,9 @@ subprojects {
                 "org.codehaus.groovy:groovy-all:${groovyVersion}",
                 "org.codehaus.groovy:groovy:${groovyVersion}",
                 "org.spockframework:spock-core:${spockVersion}",
+                "net.bytebuddy:byte-buddy:${byteBuddyVersion}",
+                "org.objenesis:objenesis:${objenesisVersion}",
+
         )
     }
     dependencyManagement {

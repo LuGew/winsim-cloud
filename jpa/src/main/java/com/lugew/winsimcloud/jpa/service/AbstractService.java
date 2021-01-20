@@ -28,27 +28,27 @@ public abstract class AbstractService<T extends Entity<ID>, R extends JpaReposit
     protected R repository;
 
     @Override
-    public long count() {
-        return repository.count();
+    public int count() {
+        return (int) repository.count();
     }
 
     @Override
-    public int insert(T entity) {
+    public boolean insert(T entity) {
         preInsert(entity);
         repository.saveAndFlush(entity);
-        return 1;
+        return true;
     }
 
     @Override
-    public int insert(List<T> entities) {
+    public boolean insert(List<T> entities) {
         preInsert(entities);
         repository.saveAll(entities);
-        return entities.size();
+        return true;
     }
 
 
     @Override
-    public int delete(ID id) {
+    public boolean delete(ID id) {
         T entity = (T) new Object();
         entity.setId(id);
         preDelete(entity);
@@ -76,9 +76,9 @@ public abstract class AbstractService<T extends Entity<ID>, R extends JpaReposit
     }
 
     @Override
-    public int update(T entity) {
+    public boolean update(T entity) {
         repository.saveAndFlush(entity);
-        return 1;
+        return true;
     }
 
     @Override

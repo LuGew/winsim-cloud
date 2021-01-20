@@ -20,6 +20,7 @@ spring:
 logging:
   level:
     org.springframework: DEBUG
+    com.lugew.winsimcloud: DEBUG
 
 #  cloud:
 #    service-registry:

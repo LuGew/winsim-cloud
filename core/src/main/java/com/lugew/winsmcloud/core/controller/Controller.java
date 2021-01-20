@@ -18,9 +18,9 @@ public interface Controller<T extends Entity<ID>, ID> {
 
     T get(ID id);
 
-    int add(T entity);
+    boolean add(T entity);
 
-    int update(T entity);
+    boolean update(T entity);
 
-    int delete(ID id);
+    boolean delete(ID id);
 }
