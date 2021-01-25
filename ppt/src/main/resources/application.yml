@@ -1,7 +1,0 @@
-spring:
-  datasource:
-    url: jdbc:mysql://39.97.164.196:23306/ppt
-    username: root
-    password: root.Y4yhljt
-server:
-  port: 8001

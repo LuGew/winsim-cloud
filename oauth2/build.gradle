@@ -8,12 +8,7 @@ dependencies {
             "org.springdoc:springdoc-openapi-ui:${openapiVersion}",
             "org.springframework.boot:spring-boot-starter-data-redis",
             "org.springframework.cloud:spring-cloud-starter-oauth2",
-            project(":web"),
-            project(":jpa")
-    )
-    annotationProcessor(
-            "com.querydsl:querydsl-apt:${queryDslVersion}:jpa",
-            "javax.annotation:javax.annotation-api:1.3.2",
+            "com.github.lugew.winsin:winsin-spring-boot-starter:1.0.0-SNAPSHOT"
     )
     runtimeOnly(
             "mysql:mysql-connector-java:${mysqlVersion}"

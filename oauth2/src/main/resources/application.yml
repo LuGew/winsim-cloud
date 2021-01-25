@@ -1,6 +1,10 @@
 server:
   port: 18000
 spring:
+  #  国际化
+  messages:
+    basename: i18n/messages
+
   application:
     name: oauth2
   jpa:
@@ -35,3 +39,9 @@ logging:
 #    prefer-ip-address: true
 
 
+mybatis-plus:
+  global-config:
+    db-config:
+      logic-delete-field: deleted
+      logic-delete-value: true
+      logic-not-delete-value: false
